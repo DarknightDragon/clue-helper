@@ -22,6 +22,7 @@ public class TabActivity extends AppCompatActivity {
         ViewPager2 vp2 = findViewById( R.id.view_pager );
         vp2.setAdapter( new ViewsAdapter( this ) );
 
+        // TabLayoutMediator
         TabLayout tabLayout = findViewById( R.id.tab_layout );
         TabLayoutMediator tabLayoutMediator = new TabLayoutMediator(tabLayout, vp2, new TabLayoutMediator.TabConfigurationStrategy() {
             @Override
@@ -43,18 +44,13 @@ public class TabActivity extends AppCompatActivity {
 
         // get caller and open corresponding fragment
         int caller = getIntent().getExtras().getInt("id" );
-        switch ( caller ) {
-            case 0:
-                // load character fragment
-                break;
-            case 1:
-                // load weapon fragment
-                break;
-            case 2:
-                // load room fragment
-                break;
-            default:
-                // throw error
+        if ( caller == 0 || caller == 1 || caller == 2 )
+        {
+            vp2.setCurrentItem( caller );
+        }
+        else
+        {
+            throw new IllegalArgumentException( "Error! Caller number: " + caller );
         }
     }
 }
