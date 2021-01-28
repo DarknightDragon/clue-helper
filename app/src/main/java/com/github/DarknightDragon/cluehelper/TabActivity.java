@@ -2,6 +2,8 @@ package com.github.DarknightDragon.cluehelper;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -11,6 +13,9 @@ import androidx.viewpager2.widget.ViewPager2;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 
+import java.util.Iterator;
+import java.util.Set;
+
 public class TabActivity extends AppCompatActivity {
 
     @Override
@@ -18,7 +23,7 @@ public class TabActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView( R.layout.activity_tablayout );
 
-        // setup swipable tab view
+        // setup swipeable tab view
         ViewPager2 vp2 = findViewById( R.id.view_pager );
         vp2.setAdapter( new ViewsAdapter( this ) );
 
@@ -42,15 +47,60 @@ public class TabActivity extends AppCompatActivity {
         });
         tabLayoutMediator.attach();
 
+        // add back button
+        getSupportActionBar().setDisplayHomeAsUpEnabled( true );
+
         // get caller and open corresponding fragment
         int caller = getIntent().getExtras().getInt("id" );
         if ( caller == 0 || caller == 1 || caller == 2 )
         {
             vp2.setCurrentItem( caller );
         }
-        else
+    }
+
+    @Override
+    protected void onNewIntent( Intent intent )
+    {
+        super.onNewIntent( intent );
+        setIntent( intent );
+    }
+
+    @Override
+    protected void onResume()
+    {
+        super.onResume();
+
+        ViewPager2 vp2 = findViewById( R.id.view_pager );
+        if ( vp2.getAdapter() != null )
         {
-            throw new IllegalArgumentException( "Error! Caller number: " + caller );
+            int caller = getIntent().getExtras().getInt( "id" );
+            if ( vp2.getCurrentItem() != caller )
+            {
+                vp2.setCurrentItem( caller );
+            }
+        }
+
+    }
+
+    @Override
+    public boolean onOptionsItemSelected( MenuItem item )
+    {
+        switch ( item.getItemId() )
+        {
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+            default:
+                return super.onOptionsItemSelected( item );
         }
     }
+
+    @Override
+    public void onBackPressed()
+    {
+        Intent i = new Intent( this, MainActivity.class );
+        i.addFlags( Intent.FLAG_ACTIVITY_REORDER_TO_FRONT );
+        startActivity( i );
+    }
+
 }
