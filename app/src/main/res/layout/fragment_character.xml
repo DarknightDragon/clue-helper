@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".CharacterFragment">
 
-    <!-- Scarlet -->
+    <!-- Ms. Scarlet -->
     <View
         android:id="@+id/scarlet_border"
         app:layout_constraintWidth="match_constraint"
@@ -17,9 +17,9 @@
         android:layout_marginStart="@dimen/border_margin_size"
         android:layout_marginEnd="@dimen/border_margin_size"
         app:layout_constraintBottom_toBottomOf="@+id/scarlet_text"
-        app:layout_constraintEnd_toEndOf="@id/scarlet_text"
+        app:layout_constraintEnd_toEndOf="@+id/scarlet_text"
         app:layout_constraintStart_toStartOf="@+id/scarlet_text"
-        app:layout_constraintTop_toTopOf="@id/scarlet" />
+        app:layout_constraintTop_toTopOf="@+id/scarlet" />
 
     <TextView
         android:id="@+id/scarlet"
