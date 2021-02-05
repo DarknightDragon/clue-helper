@@ -11,4 +11,19 @@
     <string name="name_plum">Prof. Plum</string>
     <string name="name_green">Mr. Green</string>
     <string name="name_orchid">Dr. Orchid</string>
+    <string name="weapon_candlestick">Candlestick</string>
+    <string name="weapon_dagger">Dagger</string>
+    <string name="weapon_leadpipe">Lead Pipe</string>
+    <string name="weapon_revolver">Revolver</string>
+    <string name="weapon_rope">Rope</string>
+    <string name="weapon_wrench">Wrench</string>
+    <string name="room_ballroom">Ballroom</string>
+    <string name="room_billiard">Billiard Room</string>
+    <string name="room_conservatory">Conservatory</string>
+    <string name="room_dining">Dining Room</string>
+    <string name="room_hall">Hall</string>
+    <string name="room_kitchen">Kitchen</string>
+    <string name="room_library">Library</string>
+    <string name="room_lounge">Lounge</string>
+    <string name="room_study">Study</string>
 </resources>

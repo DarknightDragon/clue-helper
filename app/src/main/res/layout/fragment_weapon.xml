@@ -1,22 +1,479 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".WeaponFragment">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="Hello Weapon Fragment" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <EditText
-        android:id="@+id/editTextTextPersonName3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Name2" />
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_weapon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.5" />
 
-</FrameLayout>
+        <!-- Candlestick -->
+        <View
+            android:id="@+id/candlestick_border"
+            app:layout_constraintWidth="match_constraint"
+            app:layout_constraintHeight="match_constraint"
+            android:background="@drawable/border"
+            android:layout_marginTop="@dimen/border_margin_size"
+            android:layout_marginBottom="@dimen/border_margin_size"
+            android:layout_marginStart="@dimen/border_margin_size"
+            android:layout_marginEnd="@dimen/border_margin_size"
+            app:layout_constraintBottom_toBottomOf="@+id/candlestick_text"
+            app:layout_constraintEnd_toEndOf="@+id/candlestick_text"
+            app:layout_constraintStart_toStartOf="@+id/candlestick_text"
+            app:layout_constraintTop_toTopOf="@+id/candlestick" />
+
+        <TextView
+            android:id="@+id/candlestick"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/weapon_candlestick"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="@dimen/name_size"
+            app:layout_constraintHorizontal_bias="0.60"
+            app:layout_constraintEnd_toStartOf="@id/guideline_weapon"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <RadioGroup
+            android:id="@+id/candlestick_radio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal"
+            android:padding="@dimen/radio_btn_padding_top_size"
+            app:layout_constraintEnd_toEndOf="@+id/candlestick"
+            app:layout_constraintStart_toStartOf="@+id/candlestick"
+            app:layout_constraintTop_toBottomOf="@+id/candlestick">
+
+            <RadioButton
+                android:id="@+id/candlestick_no"
+                android:layout_width="@dimen/radio_btn_size"
+                android:layout_height="@dimen/radio_btn_size"
+                android:layout_marginEnd="@dimen/radio_btn_margin_side_size"
+                android:background="@drawable/radio_no_selector"
+                android:button="@android:color/transparent" />
+
+            <RadioButton
+                android:id="@+id/candlestick_maybe"
+                android:layout_width="@dimen/radio_btn_size"
+                android:layout_height="@dimen/radio_btn_size"
+                android:background="@drawable/radio_maybe_selector"
+                android:button="@android:color/transparent" />
+
+            <RadioButton
+                android:id="@+id/candlestick_yes"
+                android:layout_width="@dimen/radio_btn_size"
+                android:layout_height="@dimen/radio_btn_size"
+                android:layout_marginStart="@dimen/radio_btn_margin_side_size"
+                android:background="@drawable/radio_yes_selector"
+                android:button="@android:color/transparent" />
+        </RadioGroup>
+
+        <EditText
+            android:id="@+id/candlestick_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:gravity="start|top"
+            android:inputType="textMultiLine"
+            android:lines="2"
+            app:layout_constraintEnd_toEndOf="@+id/candlestick_radio"
+            app:layout_constraintStart_toStartOf="@+id/candlestick_radio"
+            app:layout_constraintTop_toBottomOf="@+id/candlestick_radio" />
+
+
+        <!-- Dagger -->
+        <View
+            android:id="@+id/dagger_border"
+            app:layout_constraintWidth="match_constraint"
+            app:layout_constraintHeight="match_constraint"
+            android:background="@drawable/border"
+            android:layout_marginTop="@dimen/border_margin_size"
+            android:layout_marginBottom="@dimen/border_margin_size"
+            android:layout_marginStart="@dimen/border_margin_size"
+            android:layout_marginEnd="@dimen/border_margin_size"
+            app:layout_constraintBottom_toBottomOf="@+id/dagger_text"
+            app:layout_constraintEnd_toEndOf="@id/dagger_text"
+            app:layout_constraintStart_toStartOf="@+id/dagger_text"
+            app:layout_constraintTop_toTopOf="@id/dagger" />
+
+        <TextView
+            android:id="@+id/dagger"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/weapon_dagger"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="@dimen/name_size"
+            app:layout_constraintHorizontal_bias="0.45"
+            app:layout_constraintStart_toEndOf="@id/guideline_weapon"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <RadioGroup
+            android:id="@+id/dagger_radio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal"
+            android:padding="@dimen/radio_btn_padding_top_size"
+            app:layout_constraintEnd_toEndOf="@+id/dagger"
+            app:layout_constraintStart_toStartOf="@+id/dagger"
+            app:layout_constraintTop_toBottomOf="@+id/dagger">
+
+            <RadioButton
+                android:id="@+id/dagger_no"
+                android:layout_width="@dimen/radio_btn_size"
+                android:layout_height="@dimen/radio_btn_size"
+                android:layout_marginEnd="@dimen/radio_btn_margin_side_size"
+                android:background="@drawable/radio_no_selector"
+                android:button="@android:color/transparent" />
+
+            <RadioButton
+                android:id="@+id/dagger_maybe"
+                android:layout_width="@dimen/radio_btn_size"
+                android:layout_height="@dimen/radio_btn_size"
+                android:background="@drawable/radio_maybe_selector"
+                android:button="@android:color/transparent" />
+
+            <RadioButton
+                android:id="@+id/dagger_yes"
+                android:layout_width="@dimen/radio_btn_size"
+                android:layout_height="@dimen/radio_btn_size"
+                android:layout_marginStart="@dimen/radio_btn_margin_side_size"
+                android:background="@drawable/radio_yes_selector"
+                android:button="@android:color/transparent" />
+        </RadioGroup>
+
+        <EditText
+            android:id="@+id/dagger_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:gravity="start|top"
+            android:inputType="textMultiLine"
+            android:lines="2"
+            app:layout_constraintEnd_toEndOf="@+id/dagger_radio"
+            app:layout_constraintStart_toStartOf="@+id/dagger_radio"
+            app:layout_constraintTop_toBottomOf="@+id/dagger_radio" />
+
+
+        <!-- Lead Pipe -->
+        <View
+            android:id="@+id/leadpipe_border"
+            app:layout_constraintWidth="match_constraint"
+            app:layout_constraintHeight="match_constraint"
+            android:background="@drawable/border"
+            android:layout_marginTop="@dimen/border_margin_size"
+            android:layout_marginBottom="@dimen/border_margin_size"
+            android:layout_marginStart="@dimen/border_margin_size"
+            android:layout_marginEnd="@dimen/border_margin_size"
+            app:layout_constraintBottom_toBottomOf="@+id/leadpipe_text"
+            app:layout_constraintEnd_toEndOf="@id/leadpipe_text"
+            app:layout_constraintStart_toStartOf="@+id/leadpipe_text"
+            app:layout_constraintTop_toTopOf="@id/leadpipe" />
+
+        <TextView
+            android:id="@+id/leadpipe"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="@string/weapon_leadpipe"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="@dimen/name_size"
+            app:layout_constraintEnd_toEndOf="@+id/candlestick"
+            app:layout_constraintStart_toStartOf="@+id/candlestick"
+            app:layout_constraintTop_toBottomOf="@+id/candlestick_text" />
+
+        <RadioGroup
+            android:id="@+id/leadpipe_radio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal"
+            android:padding="@dimen/radio_btn_padding_top_size"
+            app:layout_constraintEnd_toEndOf="@+id/leadpipe"
+            app:layout_constraintStart_toStartOf="@+id/leadpipe"
+            app:layout_constraintTop_toBottomOf="@+id/leadpipe">
+
+            <RadioButton
+                android:id="@+id/leadpipe_no"
+                android:layout_width="@dimen/radio_btn_size"
+                android:layout_height="@dimen/radio_btn_size"
+                android:layout_marginEnd="@dimen/radio_btn_margin_side_size"
+                android:background="@drawable/radio_no_selector"
+                android:button="@android:color/transparent" />
+
+            <RadioButton
+                android:id="@+id/leadpipe_maybe"
+                android:layout_width="@dimen/radio_btn_size"
+                android:layout_height="@dimen/radio_btn_size"
+                android:background="@drawable/radio_maybe_selector"
+                android:button="@android:color/transparent" />
+
+            <RadioButton
+                android:id="@+id/leadpipe_yes"
+                android:layout_width="@dimen/radio_btn_size"
+                android:layout_height="@dimen/radio_btn_size"
+                android:layout_marginStart="@dimen/radio_btn_margin_side_size"
+                android:background="@drawable/radio_yes_selector"
+                android:button="@android:color/transparent" />
+        </RadioGroup>
+
+        <EditText
+            android:id="@+id/leadpipe_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:gravity="start|top"
+            android:inputType="textMultiLine"
+            android:lines="2"
+            app:layout_constraintEnd_toEndOf="@+id/leadpipe_radio"
+            app:layout_constraintStart_toStartOf="@+id/leadpipe_radio"
+            app:layout_constraintTop_toBottomOf="@+id/leadpipe_radio" />
+
+
+        <!-- Revolver -->
+        <View
+            android:id="@+id/revolver_border"
+            app:layout_constraintWidth="match_constraint"
+            app:layout_constraintHeight="match_constraint"
+            android:background="@drawable/border"
+            android:layout_marginTop="@dimen/border_margin_size"
+            android:layout_marginBottom="@dimen/border_margin_size"
+            android:layout_marginStart="@dimen/border_margin_size"
+            android:layout_marginEnd="@dimen/border_margin_size"
+            app:layout_constraintBottom_toBottomOf="@+id/revolver_text"
+            app:layout_constraintEnd_toEndOf="@id/revolver_text"
+            app:layout_constraintStart_toStartOf="@+id/revolver_text"
+            app:layout_constraintTop_toTopOf="@id/revolver" />
+
+        <TextView
+            android:id="@+id/revolver"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="@string/weapon_revolver"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="@dimen/name_size"
+            app:layout_constraintEnd_toEndOf="@+id/dagger"
+            app:layout_constraintStart_toStartOf="@+id/dagger"
+            app:layout_constraintTop_toBottomOf="@+id/dagger_text" />
+
+        <RadioGroup
+            android:id="@+id/revolver_radio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal"
+            android:padding="@dimen/radio_btn_padding_top_size"
+            app:layout_constraintEnd_toEndOf="@+id/revolver"
+            app:layout_constraintStart_toStartOf="@+id/revolver"
+            app:layout_constraintTop_toBottomOf="@+id/revolver">
+
+            <RadioButton
+                android:id="@+id/revolver_no"
+                android:layout_width="@dimen/radio_btn_size"
+                android:layout_height="@dimen/radio_btn_size"
+                android:layout_marginEnd="@dimen/radio_btn_margin_side_size"
+                android:background="@drawable/radio_no_selector"
+                android:button="@android:color/transparent" />
+
+            <RadioButton
+                android:id="@+id/revolver_maybe"
+                android:layout_width="@dimen/radio_btn_size"
+                android:layout_height="@dimen/radio_btn_size"
+                android:background="@drawable/radio_maybe_selector"
+                android:button="@android:color/transparent" />
+
+            <RadioButton
+                android:id="@+id/revolver_yes"
+                android:layout_width="@dimen/radio_btn_size"
+                android:layout_height="@dimen/radio_btn_size"
+                android:layout_marginStart="@dimen/radio_btn_margin_side_size"
+                android:background="@drawable/radio_yes_selector"
+                android:button="@android:color/transparent" />
+        </RadioGroup>
+
+        <EditText
+            android:id="@+id/revolver_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:gravity="start|top"
+            android:inputType="textMultiLine"
+            android:lines="2"
+            app:layout_constraintEnd_toEndOf="@+id/revolver_radio"
+            app:layout_constraintStart_toStartOf="@+id/revolver_radio"
+            app:layout_constraintTop_toBottomOf="@+id/revolver_radio" />
+
+
+        <!-- Rope -->
+        <View
+            android:id="@+id/rope_border"
+            app:layout_constraintWidth="match_constraint"
+            app:layout_constraintHeight="match_constraint"
+            android:background="@drawable/border"
+            android:layout_marginTop="@dimen/border_margin_size"
+            android:layout_marginBottom="@dimen/border_margin_size"
+            android:layout_marginStart="@dimen/border_margin_size"
+            android:layout_marginEnd="@dimen/border_margin_size"
+            app:layout_constraintBottom_toBottomOf="@+id/rope_text"
+            app:layout_constraintEnd_toEndOf="@id/rope_text"
+            app:layout_constraintStart_toStartOf="@+id/rope_text"
+            app:layout_constraintTop_toTopOf="@id/rope" />
+
+        <TextView
+            android:id="@+id/rope"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="@string/weapon_rope"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="@dimen/name_size"
+            app:layout_constraintEnd_toEndOf="@+id/leadpipe"
+            app:layout_constraintStart_toStartOf="@+id/leadpipe"
+            app:layout_constraintTop_toBottomOf="@+id/leadpipe_text" />
+
+        <RadioGroup
+            android:id="@+id/rope_radio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal"
+            android:padding="@dimen/radio_btn_padding_top_size"
+            app:layout_constraintEnd_toEndOf="@+id/rope"
+            app:layout_constraintStart_toStartOf="@+id/rope"
+            app:layout_constraintTop_toBottomOf="@+id/rope">
+
+            <RadioButton
+                android:id="@+id/rope_no"
+                android:layout_width="@dimen/radio_btn_size"
+                android:layout_height="@dimen/radio_btn_size"
+                android:layout_marginEnd="@dimen/radio_btn_margin_side_size"
+                android:background="@drawable/radio_no_selector"
+                android:button="@android:color/transparent" />
+
+            <RadioButton
+                android:id="@+id/rope_maybe"
+                android:layout_width="@dimen/radio_btn_size"
+                android:layout_height="@dimen/radio_btn_size"
+                android:background="@drawable/radio_maybe_selector"
+                android:button="@android:color/transparent" />
+
+            <RadioButton
+                android:id="@+id/rope_yes"
+                android:layout_width="@dimen/radio_btn_size"
+                android:layout_height="@dimen/radio_btn_size"
+                android:layout_marginStart="@dimen/radio_btn_margin_side_size"
+                android:background="@drawable/radio_yes_selector"
+                android:button="@android:color/transparent" />
+        </RadioGroup>
+
+        <EditText
+            android:id="@+id/rope_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:gravity="start|top"
+            android:inputType="textMultiLine"
+            android:lines="2"
+            app:layout_constraintEnd_toEndOf="@+id/rope_radio"
+            app:layout_constraintStart_toStartOf="@+id/rope_radio"
+            app:layout_constraintTop_toBottomOf="@+id/rope_radio" />
+
+
+        <!-- Wrench -->
+        <View
+            android:id="@+id/wrench_border"
+            app:layout_constraintWidth="match_constraint"
+            app:layout_constraintHeight="match_constraint"
+            android:background="@drawable/border"
+            android:layout_marginTop="@dimen/border_margin_size"
+            android:layout_marginBottom="@dimen/border_margin_size"
+            android:layout_marginStart="@dimen/border_margin_size"
+            android:layout_marginEnd="@dimen/border_margin_size"
+            app:layout_constraintBottom_toBottomOf="@+id/wrench_text"
+            app:layout_constraintEnd_toEndOf="@id/wrench_text"
+            app:layout_constraintStart_toStartOf="@+id/wrench_text"
+            app:layout_constraintTop_toTopOf="@id/wrench" />
+
+        <TextView
+            android:id="@+id/wrench"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="@string/weapon_wrench"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="@dimen/name_size"
+            app:layout_constraintEnd_toEndOf="@+id/revolver"
+            app:layout_constraintStart_toStartOf="@+id/revolver"
+            app:layout_constraintTop_toBottomOf="@+id/revolver_text" />
+
+        <RadioGroup
+            android:id="@+id/wrench_radio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal"
+            android:padding="@dimen/radio_btn_padding_top_size"
+            app:layout_constraintEnd_toEndOf="@+id/wrench"
+            app:layout_constraintStart_toStartOf="@+id/wrench"
+            app:layout_constraintTop_toBottomOf="@+id/wrench">
+
+            <RadioButton
+                android:id="@+id/wrench_no"
+                android:layout_width="@dimen/radio_btn_size"
+                android:layout_height="@dimen/radio_btn_size"
+                android:layout_marginEnd="@dimen/radio_btn_margin_side_size"
+                android:background="@drawable/radio_no_selector"
+                android:button="@android:color/transparent" />
+
+            <RadioButton
+                android:id="@+id/wrench_maybe"
+                android:layout_width="@dimen/radio_btn_size"
+                android:layout_height="@dimen/radio_btn_size"
+                android:background="@drawable/radio_maybe_selector"
+                android:button="@android:color/transparent" />
+
+            <RadioButton
+                android:id="@+id/wrench_yes"
+                android:layout_width="@dimen/radio_btn_size"
+                android:layout_height="@dimen/radio_btn_size"
+                android:layout_marginStart="@dimen/radio_btn_margin_side_size"
+                android:background="@drawable/radio_yes_selector"
+                android:button="@android:color/transparent" />
+        </RadioGroup>
+
+        <EditText
+            android:id="@+id/wrench_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:gravity="start|top"
+            android:inputType="textMultiLine"
+            android:lines="2"
+            app:layout_constraintEnd_toEndOf="@+id/wrench_radio"
+            app:layout_constraintStart_toStartOf="@+id/wrench_radio"
+            app:layout_constraintTop_toBottomOf="@+id/wrench_radio" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>
