@@ -11,7 +11,7 @@
         android:layout_height="wrap_content">
 
         <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline_weapon"
+            android:id="@+id/guideline_room"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -20,29 +20,29 @@
         <!-- Ballroom -->
         <View
             android:id="@+id/ballroom_border"
-            app:layout_constraintWidth="match_constraint"
-            app:layout_constraintHeight="match_constraint"
-            android:background="@drawable/border"
-            android:layout_marginTop="@dimen/border_margin_size"
-            android:layout_marginBottom="@dimen/border_margin_size"
             android:layout_marginStart="@dimen/border_margin_size"
+            android:layout_marginTop="@dimen/border_margin_size"
             android:layout_marginEnd="@dimen/border_margin_size"
+            android:layout_marginBottom="@dimen/border_margin_size"
+            android:background="@drawable/border"
             app:layout_constraintBottom_toBottomOf="@+id/ballroom_text"
             app:layout_constraintEnd_toEndOf="@+id/ballroom_text"
+            app:layout_constraintHeight="match_constraint"
             app:layout_constraintStart_toStartOf="@+id/ballroom_text"
-            app:layout_constraintTop_toTopOf="@+id/ballroom" />
+            app:layout_constraintTop_toTopOf="@+id/ballroom"
+            app:layout_constraintWidth="match_constraint" />
 
         <TextView
             android:id="@+id/ballroom"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="@string/weapon_ballroom"
+            android:text="@string/room_ballroom"
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="@dimen/name_size"
+            app:layout_constraintEnd_toStartOf="@id/guideline_room"
             app:layout_constraintHorizontal_bias="0.60"
-            app:layout_constraintEnd_toStartOf="@id/guideline_weapon"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -94,48 +94,48 @@
             app:layout_constraintTop_toBottomOf="@+id/ballroom_radio" />
 
 
-        <!-- Dagger -->
+        <!-- Billiard Room -->
         <View
-            android:id="@+id/dagger_border"
-            app:layout_constraintWidth="match_constraint"
-            app:layout_constraintHeight="match_constraint"
-            android:background="@drawable/border"
-            android:layout_marginTop="@dimen/border_margin_size"
-            android:layout_marginBottom="@dimen/border_margin_size"
+            android:id="@+id/billiard_border"
             android:layout_marginStart="@dimen/border_margin_size"
+            android:layout_marginTop="@dimen/border_margin_size"
             android:layout_marginEnd="@dimen/border_margin_size"
-            app:layout_constraintBottom_toBottomOf="@+id/dagger_text"
-            app:layout_constraintEnd_toEndOf="@id/dagger_text"
-            app:layout_constraintStart_toStartOf="@+id/dagger_text"
-            app:layout_constraintTop_toTopOf="@id/dagger" />
+            android:layout_marginBottom="@dimen/border_margin_size"
+            android:background="@drawable/border"
+            app:layout_constraintBottom_toBottomOf="@+id/billiard_text"
+            app:layout_constraintEnd_toEndOf="@id/billiard_text"
+            app:layout_constraintHeight="match_constraint"
+            app:layout_constraintStart_toStartOf="@+id/billiard_text"
+            app:layout_constraintTop_toTopOf="@id/billiard"
+            app:layout_constraintWidth="match_constraint" />
 
         <TextView
-            android:id="@+id/dagger"
+            android:id="@+id/billiard"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="@string/weapon_dagger"
+            android:text="@string/room_billiard"
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="@dimen/name_size"
-            app:layout_constraintHorizontal_bias="0.45"
-            app:layout_constraintStart_toEndOf="@id/guideline_weapon"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.45"
+            app:layout_constraintStart_toEndOf="@id/guideline_room"
             app:layout_constraintTop_toTopOf="parent" />
 
         <RadioGroup
-            android:id="@+id/dagger_radio"
+            android:id="@+id/billiard_radio"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:orientation="horizontal"
             android:padding="@dimen/radio_btn_padding_top_size"
-            app:layout_constraintEnd_toEndOf="@+id/dagger"
-            app:layout_constraintStart_toStartOf="@+id/dagger"
-            app:layout_constraintTop_toBottomOf="@+id/dagger">
+            app:layout_constraintEnd_toEndOf="@+id/billiard"
+            app:layout_constraintStart_toStartOf="@+id/billiard"
+            app:layout_constraintTop_toBottomOf="@+id/billiard">
 
             <RadioButton
-                android:id="@+id/dagger_no"
+                android:id="@+id/billiard_no"
                 android:layout_width="@dimen/radio_btn_size"
                 android:layout_height="@dimen/radio_btn_size"
                 android:layout_marginEnd="@dimen/radio_btn_margin_side_size"
@@ -143,14 +143,14 @@
                 android:button="@android:color/transparent" />
 
             <RadioButton
-                android:id="@+id/dagger_maybe"
+                android:id="@+id/billiard_maybe"
                 android:layout_width="@dimen/radio_btn_size"
                 android:layout_height="@dimen/radio_btn_size"
                 android:background="@drawable/radio_maybe_selector"
                 android:button="@android:color/transparent" />
 
             <RadioButton
-                android:id="@+id/dagger_yes"
+                android:id="@+id/billiard_yes"
                 android:layout_width="@dimen/radio_btn_size"
                 android:layout_height="@dimen/radio_btn_size"
                 android:layout_marginStart="@dimen/radio_btn_margin_side_size"
@@ -159,39 +159,39 @@
         </RadioGroup>
 
         <EditText
-            android:id="@+id/dagger_text"
+            android:id="@+id/billiard_text"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:ems="10"
             android:gravity="start|top"
             android:inputType="textMultiLine"
             android:lines="2"
-            app:layout_constraintEnd_toEndOf="@+id/dagger_radio"
-            app:layout_constraintStart_toStartOf="@+id/dagger_radio"
-            app:layout_constraintTop_toBottomOf="@+id/dagger_radio" />
+            app:layout_constraintEnd_toEndOf="@+id/billiard_radio"
+            app:layout_constraintStart_toStartOf="@+id/billiard_radio"
+            app:layout_constraintTop_toBottomOf="@+id/billiard_radio" />
 
 
-        <!-- Lead Pipe -->
+        <!-- Conservatory -->
         <View
-            android:id="@+id/leadpipe_border"
-            app:layout_constraintWidth="match_constraint"
-            app:layout_constraintHeight="match_constraint"
-            android:background="@drawable/border"
-            android:layout_marginTop="@dimen/border_margin_size"
-            android:layout_marginBottom="@dimen/border_margin_size"
+            android:id="@+id/conservatory_border"
             android:layout_marginStart="@dimen/border_margin_size"
+            android:layout_marginTop="@dimen/border_margin_size"
             android:layout_marginEnd="@dimen/border_margin_size"
-            app:layout_constraintBottom_toBottomOf="@+id/leadpipe_text"
-            app:layout_constraintEnd_toEndOf="@id/leadpipe_text"
-            app:layout_constraintStart_toStartOf="@+id/leadpipe_text"
-            app:layout_constraintTop_toTopOf="@id/leadpipe" />
+            android:layout_marginBottom="@dimen/border_margin_size"
+            android:background="@drawable/border"
+            app:layout_constraintBottom_toBottomOf="@+id/conservatory_text"
+            app:layout_constraintEnd_toEndOf="@id/conservatory_text"
+            app:layout_constraintHeight="match_constraint"
+            app:layout_constraintStart_toStartOf="@+id/conservatory_text"
+            app:layout_constraintTop_toTopOf="@id/conservatory"
+            app:layout_constraintWidth="match_constraint" />
 
         <TextView
-            android:id="@+id/leadpipe"
+            android:id="@+id/conservatory"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
-            android:text="@string/weapon_leadpipe"
+            android:text="@string/room_conservatory"
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="@dimen/name_size"
@@ -200,18 +200,18 @@
             app:layout_constraintTop_toBottomOf="@+id/ballroom_text" />
 
         <RadioGroup
-            android:id="@+id/leadpipe_radio"
+            android:id="@+id/conservatory_radio"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:orientation="horizontal"
             android:padding="@dimen/radio_btn_padding_top_size"
-            app:layout_constraintEnd_toEndOf="@+id/leadpipe"
-            app:layout_constraintStart_toStartOf="@+id/leadpipe"
-            app:layout_constraintTop_toBottomOf="@+id/leadpipe">
+            app:layout_constraintEnd_toEndOf="@+id/conservatory"
+            app:layout_constraintStart_toStartOf="@+id/conservatory"
+            app:layout_constraintTop_toBottomOf="@+id/conservatory">
 
             <RadioButton
-                android:id="@+id/leadpipe_no"
+                android:id="@+id/conservatory_no"
                 android:layout_width="@dimen/radio_btn_size"
                 android:layout_height="@dimen/radio_btn_size"
                 android:layout_marginEnd="@dimen/radio_btn_margin_side_size"
@@ -219,14 +219,14 @@
                 android:button="@android:color/transparent" />
 
             <RadioButton
-                android:id="@+id/leadpipe_maybe"
+                android:id="@+id/conservatory_maybe"
                 android:layout_width="@dimen/radio_btn_size"
                 android:layout_height="@dimen/radio_btn_size"
                 android:background="@drawable/radio_maybe_selector"
                 android:button="@android:color/transparent" />
 
             <RadioButton
-                android:id="@+id/leadpipe_yes"
+                android:id="@+id/conservatory_yes"
                 android:layout_width="@dimen/radio_btn_size"
                 android:layout_height="@dimen/radio_btn_size"
                 android:layout_marginStart="@dimen/radio_btn_margin_side_size"
@@ -235,59 +235,59 @@
         </RadioGroup>
 
         <EditText
-            android:id="@+id/leadpipe_text"
+            android:id="@+id/conservatory_text"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:ems="10"
             android:gravity="start|top"
             android:inputType="textMultiLine"
             android:lines="2"
-            app:layout_constraintEnd_toEndOf="@+id/leadpipe_radio"
-            app:layout_constraintStart_toStartOf="@+id/leadpipe_radio"
-            app:layout_constraintTop_toBottomOf="@+id/leadpipe_radio" />
+            app:layout_constraintEnd_toEndOf="@+id/conservatory_radio"
+            app:layout_constraintStart_toStartOf="@+id/conservatory_radio"
+            app:layout_constraintTop_toBottomOf="@+id/conservatory_radio" />
 
 
-        <!-- Revolver -->
+        <!-- Dining Room -->
         <View
-            android:id="@+id/revolver_border"
-            app:layout_constraintWidth="match_constraint"
-            app:layout_constraintHeight="match_constraint"
-            android:background="@drawable/border"
-            android:layout_marginTop="@dimen/border_margin_size"
-            android:layout_marginBottom="@dimen/border_margin_size"
+            android:id="@+id/dining_border"
             android:layout_marginStart="@dimen/border_margin_size"
+            android:layout_marginTop="@dimen/border_margin_size"
             android:layout_marginEnd="@dimen/border_margin_size"
-            app:layout_constraintBottom_toBottomOf="@+id/revolver_text"
-            app:layout_constraintEnd_toEndOf="@id/revolver_text"
-            app:layout_constraintStart_toStartOf="@+id/revolver_text"
-            app:layout_constraintTop_toTopOf="@id/revolver" />
+            android:layout_marginBottom="@dimen/border_margin_size"
+            android:background="@drawable/border"
+            app:layout_constraintBottom_toBottomOf="@+id/dining_text"
+            app:layout_constraintEnd_toEndOf="@id/dining_text"
+            app:layout_constraintHeight="match_constraint"
+            app:layout_constraintStart_toStartOf="@+id/dining_text"
+            app:layout_constraintTop_toTopOf="@id/dining"
+            app:layout_constraintWidth="match_constraint" />
 
         <TextView
-            android:id="@+id/revolver"
+            android:id="@+id/dining"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
-            android:text="@string/weapon_revolver"
+            android:text="@string/room_dining"
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="@dimen/name_size"
-            app:layout_constraintEnd_toEndOf="@+id/dagger"
-            app:layout_constraintStart_toStartOf="@+id/dagger"
-            app:layout_constraintTop_toBottomOf="@+id/dagger_text" />
+            app:layout_constraintEnd_toEndOf="@+id/billiard"
+            app:layout_constraintStart_toStartOf="@+id/billiard"
+            app:layout_constraintTop_toBottomOf="@+id/billiard_text" />
 
         <RadioGroup
-            android:id="@+id/revolver_radio"
+            android:id="@+id/dining_radio"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:orientation="horizontal"
             android:padding="@dimen/radio_btn_padding_top_size"
-            app:layout_constraintEnd_toEndOf="@+id/revolver"
-            app:layout_constraintStart_toStartOf="@+id/revolver"
-            app:layout_constraintTop_toBottomOf="@+id/revolver">
+            app:layout_constraintEnd_toEndOf="@+id/dining"
+            app:layout_constraintStart_toStartOf="@+id/dining"
+            app:layout_constraintTop_toBottomOf="@+id/dining">
 
             <RadioButton
-                android:id="@+id/revolver_no"
+                android:id="@+id/dining_no"
                 android:layout_width="@dimen/radio_btn_size"
                 android:layout_height="@dimen/radio_btn_size"
                 android:layout_marginEnd="@dimen/radio_btn_margin_side_size"
@@ -295,14 +295,14 @@
                 android:button="@android:color/transparent" />
 
             <RadioButton
-                android:id="@+id/revolver_maybe"
+                android:id="@+id/dining_maybe"
                 android:layout_width="@dimen/radio_btn_size"
                 android:layout_height="@dimen/radio_btn_size"
                 android:background="@drawable/radio_maybe_selector"
                 android:button="@android:color/transparent" />
 
             <RadioButton
-                android:id="@+id/revolver_yes"
+                android:id="@+id/dining_yes"
                 android:layout_width="@dimen/radio_btn_size"
                 android:layout_height="@dimen/radio_btn_size"
                 android:layout_marginStart="@dimen/radio_btn_margin_side_size"
@@ -311,59 +311,59 @@
         </RadioGroup>
 
         <EditText
-            android:id="@+id/revolver_text"
+            android:id="@+id/dining_text"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:ems="10"
             android:gravity="start|top"
             android:inputType="textMultiLine"
             android:lines="2"
-            app:layout_constraintEnd_toEndOf="@+id/revolver_radio"
-            app:layout_constraintStart_toStartOf="@+id/revolver_radio"
-            app:layout_constraintTop_toBottomOf="@+id/revolver_radio" />
+            app:layout_constraintEnd_toEndOf="@+id/dining_radio"
+            app:layout_constraintStart_toStartOf="@+id/dining_radio"
+            app:layout_constraintTop_toBottomOf="@+id/dining_radio" />
 
 
-        <!-- Rope -->
+        <!-- Hall -->
         <View
-            android:id="@+id/rope_border"
-            app:layout_constraintWidth="match_constraint"
-            app:layout_constraintHeight="match_constraint"
-            android:background="@drawable/border"
-            android:layout_marginTop="@dimen/border_margin_size"
-            android:layout_marginBottom="@dimen/border_margin_size"
+            android:id="@+id/hall_border"
             android:layout_marginStart="@dimen/border_margin_size"
+            android:layout_marginTop="@dimen/border_margin_size"
             android:layout_marginEnd="@dimen/border_margin_size"
-            app:layout_constraintBottom_toBottomOf="@+id/rope_text"
-            app:layout_constraintEnd_toEndOf="@id/rope_text"
-            app:layout_constraintStart_toStartOf="@+id/rope_text"
-            app:layout_constraintTop_toTopOf="@id/rope" />
+            android:layout_marginBottom="@dimen/border_margin_size"
+            android:background="@drawable/border"
+            app:layout_constraintBottom_toBottomOf="@+id/hall_text"
+            app:layout_constraintEnd_toEndOf="@id/hall_text"
+            app:layout_constraintHeight="match_constraint"
+            app:layout_constraintStart_toStartOf="@+id/hall_text"
+            app:layout_constraintTop_toTopOf="@id/hall"
+            app:layout_constraintWidth="match_constraint" />
 
         <TextView
-            android:id="@+id/rope"
+            android:id="@+id/hall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
-            android:text="@string/weapon_rope"
+            android:text="@string/room_hall"
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="@dimen/name_size"
-            app:layout_constraintEnd_toEndOf="@+id/leadpipe"
-            app:layout_constraintStart_toStartOf="@+id/leadpipe"
-            app:layout_constraintTop_toBottomOf="@+id/leadpipe_text" />
+            app:layout_constraintEnd_toEndOf="@+id/conservatory"
+            app:layout_constraintStart_toStartOf="@+id/conservatory"
+            app:layout_constraintTop_toBottomOf="@+id/conservatory_text" />
 
         <RadioGroup
-            android:id="@+id/rope_radio"
+            android:id="@+id/hall_radio"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:orientation="horizontal"
             android:padding="@dimen/radio_btn_padding_top_size"
-            app:layout_constraintEnd_toEndOf="@+id/rope"
-            app:layout_constraintStart_toStartOf="@+id/rope"
-            app:layout_constraintTop_toBottomOf="@+id/rope">
+            app:layout_constraintEnd_toEndOf="@+id/hall"
+            app:layout_constraintStart_toStartOf="@+id/hall"
+            app:layout_constraintTop_toBottomOf="@+id/hall">
 
             <RadioButton
-                android:id="@+id/rope_no"
+                android:id="@+id/hall_no"
                 android:layout_width="@dimen/radio_btn_size"
                 android:layout_height="@dimen/radio_btn_size"
                 android:layout_marginEnd="@dimen/radio_btn_margin_side_size"
@@ -371,14 +371,14 @@
                 android:button="@android:color/transparent" />
 
             <RadioButton
-                android:id="@+id/rope_maybe"
+                android:id="@+id/hall_maybe"
                 android:layout_width="@dimen/radio_btn_size"
                 android:layout_height="@dimen/radio_btn_size"
                 android:background="@drawable/radio_maybe_selector"
                 android:button="@android:color/transparent" />
 
             <RadioButton
-                android:id="@+id/rope_yes"
+                android:id="@+id/hall_yes"
                 android:layout_width="@dimen/radio_btn_size"
                 android:layout_height="@dimen/radio_btn_size"
                 android:layout_marginStart="@dimen/radio_btn_margin_side_size"
@@ -387,59 +387,59 @@
         </RadioGroup>
 
         <EditText
-            android:id="@+id/rope_text"
+            android:id="@+id/hall_text"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:ems="10"
             android:gravity="start|top"
             android:inputType="textMultiLine"
             android:lines="2"
-            app:layout_constraintEnd_toEndOf="@+id/rope_radio"
-            app:layout_constraintStart_toStartOf="@+id/rope_radio"
-            app:layout_constraintTop_toBottomOf="@+id/rope_radio" />
+            app:layout_constraintEnd_toEndOf="@+id/hall_radio"
+            app:layout_constraintStart_toStartOf="@+id/hall_radio"
+            app:layout_constraintTop_toBottomOf="@+id/hall_radio" />
 
 
-        <!-- Wrench -->
+        <!-- Kitchen -->
         <View
-            android:id="@+id/wrench_border"
-            app:layout_constraintWidth="match_constraint"
-            app:layout_constraintHeight="match_constraint"
-            android:background="@drawable/border"
-            android:layout_marginTop="@dimen/border_margin_size"
-            android:layout_marginBottom="@dimen/border_margin_size"
+            android:id="@+id/kitchen_border"
             android:layout_marginStart="@dimen/border_margin_size"
+            android:layout_marginTop="@dimen/border_margin_size"
             android:layout_marginEnd="@dimen/border_margin_size"
-            app:layout_constraintBottom_toBottomOf="@+id/wrench_text"
-            app:layout_constraintEnd_toEndOf="@id/wrench_text"
-            app:layout_constraintStart_toStartOf="@+id/wrench_text"
-            app:layout_constraintTop_toTopOf="@id/wrench" />
+            android:layout_marginBottom="@dimen/border_margin_size"
+            android:background="@drawable/border"
+            app:layout_constraintBottom_toBottomOf="@+id/kitchen_text"
+            app:layout_constraintEnd_toEndOf="@id/kitchen_text"
+            app:layout_constraintHeight="match_constraint"
+            app:layout_constraintStart_toStartOf="@+id/kitchen_text"
+            app:layout_constraintTop_toTopOf="@id/kitchen"
+            app:layout_constraintWidth="match_constraint" />
 
         <TextView
-            android:id="@+id/wrench"
+            android:id="@+id/kitchen"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
-            android:text="@string/weapon_wrench"
+            android:text="@string/room_kitchen"
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="@dimen/name_size"
-            app:layout_constraintEnd_toEndOf="@+id/revolver"
-            app:layout_constraintStart_toStartOf="@+id/revolver"
-            app:layout_constraintTop_toBottomOf="@+id/revolver_text" />
+            app:layout_constraintEnd_toEndOf="@+id/dining"
+            app:layout_constraintStart_toStartOf="@+id/dining"
+            app:layout_constraintTop_toBottomOf="@+id/dining_text" />
 
         <RadioGroup
-            android:id="@+id/wrench_radio"
+            android:id="@+id/kitchen_radio"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:orientation="horizontal"
             android:padding="@dimen/radio_btn_padding_top_size"
-            app:layout_constraintEnd_toEndOf="@+id/wrench"
-            app:layout_constraintStart_toStartOf="@+id/wrench"
-            app:layout_constraintTop_toBottomOf="@+id/wrench">
+            app:layout_constraintEnd_toEndOf="@+id/kitchen"
+            app:layout_constraintStart_toStartOf="@+id/kitchen"
+            app:layout_constraintTop_toBottomOf="@+id/kitchen">
 
             <RadioButton
-                android:id="@+id/wrench_no"
+                android:id="@+id/kitchen_no"
                 android:layout_width="@dimen/radio_btn_size"
                 android:layout_height="@dimen/radio_btn_size"
                 android:layout_marginEnd="@dimen/radio_btn_margin_side_size"
@@ -447,14 +447,14 @@
                 android:button="@android:color/transparent" />
 
             <RadioButton
-                android:id="@+id/wrench_maybe"
+                android:id="@+id/kitchen_maybe"
                 android:layout_width="@dimen/radio_btn_size"
                 android:layout_height="@dimen/radio_btn_size"
                 android:background="@drawable/radio_maybe_selector"
                 android:button="@android:color/transparent" />
 
             <RadioButton
-                android:id="@+id/wrench_yes"
+                android:id="@+id/kitchen_yes"
                 android:layout_width="@dimen/radio_btn_size"
                 android:layout_height="@dimen/radio_btn_size"
                 android:layout_marginStart="@dimen/radio_btn_margin_side_size"
@@ -463,16 +463,253 @@
         </RadioGroup>
 
         <EditText
-            android:id="@+id/wrench_text"
+            android:id="@+id/kitchen_text"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:ems="10"
             android:gravity="start|top"
             android:inputType="textMultiLine"
             android:lines="2"
-            app:layout_constraintEnd_toEndOf="@+id/wrench_radio"
-            app:layout_constraintStart_toStartOf="@+id/wrench_radio"
-            app:layout_constraintTop_toBottomOf="@+id/wrench_radio" />
+            app:layout_constraintEnd_toEndOf="@+id/kitchen_radio"
+            app:layout_constraintStart_toStartOf="@+id/kitchen_radio"
+            app:layout_constraintTop_toBottomOf="@+id/kitchen_radio" />
+
+
+        <!-- Library -->
+        <View
+            android:id="@+id/library_border"
+            android:layout_marginStart="@dimen/border_margin_size"
+            android:layout_marginTop="@dimen/border_margin_size"
+            android:layout_marginEnd="@dimen/border_margin_size"
+            android:layout_marginBottom="@dimen/border_margin_size"
+            android:background="@drawable/border"
+            app:layout_constraintBottom_toBottomOf="@+id/library_text"
+            app:layout_constraintEnd_toEndOf="@id/library_text"
+            app:layout_constraintHeight="match_constraint"
+            app:layout_constraintStart_toStartOf="@+id/library_text"
+            app:layout_constraintTop_toTopOf="@id/library"
+            app:layout_constraintWidth="match_constraint" />
+
+        <TextView
+            android:id="@+id/library"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="@string/room_library"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="@dimen/name_size"
+            app:layout_constraintEnd_toEndOf="@+id/hall"
+            app:layout_constraintStart_toStartOf="@+id/hall"
+            app:layout_constraintTop_toBottomOf="@+id/hall_text" />
+
+        <RadioGroup
+            android:id="@+id/library_radio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal"
+            android:padding="@dimen/radio_btn_padding_top_size"
+            app:layout_constraintEnd_toEndOf="@+id/library"
+            app:layout_constraintStart_toStartOf="@+id/library"
+            app:layout_constraintTop_toBottomOf="@+id/library">
+
+            <RadioButton
+                android:id="@+id/library_no"
+                android:layout_width="@dimen/radio_btn_size"
+                android:layout_height="@dimen/radio_btn_size"
+                android:layout_marginEnd="@dimen/radio_btn_margin_side_size"
+                android:background="@drawable/radio_no_selector"
+                android:button="@android:color/transparent" />
+
+            <RadioButton
+                android:id="@+id/library_maybe"
+                android:layout_width="@dimen/radio_btn_size"
+                android:layout_height="@dimen/radio_btn_size"
+                android:background="@drawable/radio_maybe_selector"
+                android:button="@android:color/transparent" />
+
+            <RadioButton
+                android:id="@+id/library_yes"
+                android:layout_width="@dimen/radio_btn_size"
+                android:layout_height="@dimen/radio_btn_size"
+                android:layout_marginStart="@dimen/radio_btn_margin_side_size"
+                android:background="@drawable/radio_yes_selector"
+                android:button="@android:color/transparent" />
+        </RadioGroup>
+
+        <EditText
+            android:id="@+id/library_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:gravity="start|top"
+            android:inputType="textMultiLine"
+            android:lines="2"
+            app:layout_constraintEnd_toEndOf="@+id/library_radio"
+            app:layout_constraintStart_toStartOf="@+id/library_radio"
+            app:layout_constraintTop_toBottomOf="@+id/library_radio" />
+
+
+        <!-- Lounge -->
+        <View
+            android:id="@+id/lounge_border"
+            android:layout_marginStart="@dimen/border_margin_size"
+            android:layout_marginTop="@dimen/border_margin_size"
+            android:layout_marginEnd="@dimen/border_margin_size"
+            android:layout_marginBottom="@dimen/border_margin_size"
+            android:background="@drawable/border"
+            app:layout_constraintBottom_toBottomOf="@+id/lounge_text"
+            app:layout_constraintEnd_toEndOf="@id/lounge_text"
+            app:layout_constraintHeight="match_constraint"
+            app:layout_constraintStart_toStartOf="@+id/lounge_text"
+            app:layout_constraintTop_toTopOf="@id/lounge"
+            app:layout_constraintWidth="match_constraint" />
+
+        <TextView
+            android:id="@+id/lounge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="@string/room_lounge"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="@dimen/name_size"
+            app:layout_constraintEnd_toEndOf="@+id/kitchen"
+            app:layout_constraintStart_toStartOf="@+id/kitchen"
+            app:layout_constraintTop_toBottomOf="@+id/kitchen_text" />
+
+        <RadioGroup
+            android:id="@+id/lounge_radio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal"
+            android:padding="@dimen/radio_btn_padding_top_size"
+            app:layout_constraintEnd_toEndOf="@+id/lounge"
+            app:layout_constraintStart_toStartOf="@+id/lounge"
+            app:layout_constraintTop_toBottomOf="@+id/lounge">
+
+            <RadioButton
+                android:id="@+id/lounge_no"
+                android:layout_width="@dimen/radio_btn_size"
+                android:layout_height="@dimen/radio_btn_size"
+                android:layout_marginEnd="@dimen/radio_btn_margin_side_size"
+                android:background="@drawable/radio_no_selector"
+                android:button="@android:color/transparent" />
+
+            <RadioButton
+                android:id="@+id/lounge_maybe"
+                android:layout_width="@dimen/radio_btn_size"
+                android:layout_height="@dimen/radio_btn_size"
+                android:background="@drawable/radio_maybe_selector"
+                android:button="@android:color/transparent" />
+
+            <RadioButton
+                android:id="@+id/lounge_yes"
+                android:layout_width="@dimen/radio_btn_size"
+                android:layout_height="@dimen/radio_btn_size"
+                android:layout_marginStart="@dimen/radio_btn_margin_side_size"
+                android:background="@drawable/radio_yes_selector"
+                android:button="@android:color/transparent" />
+        </RadioGroup>
+
+        <EditText
+            android:id="@+id/lounge_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:gravity="start|top"
+            android:inputType="textMultiLine"
+            android:lines="2"
+            app:layout_constraintEnd_toEndOf="@+id/lounge_radio"
+            app:layout_constraintStart_toStartOf="@+id/lounge_radio"
+            app:layout_constraintTop_toBottomOf="@+id/lounge_radio" />
+
+
+        <!-- Study -->
+        <View
+            android:id="@+id/study_border"
+            android:layout_marginStart="@dimen/border_margin_size"
+            android:layout_marginTop="@dimen/border_margin_size"
+            android:layout_marginEnd="@dimen/border_margin_size"
+            android:layout_marginBottom="@dimen/border_margin_size"
+            android:background="@drawable/border"
+            app:layout_constraintBottom_toBottomOf="@+id/study_text"
+            app:layout_constraintEnd_toEndOf="@id/study_text"
+            app:layout_constraintHeight="match_constraint"
+            app:layout_constraintStart_toStartOf="@+id/study_text"
+            app:layout_constraintTop_toTopOf="@id/study"
+            app:layout_constraintWidth="match_constraint" />
+
+        <TextView
+            android:id="@+id/study"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="@string/room_kitchen"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="@dimen/name_size"
+            app:layout_constraintEnd_toEndOf="@+id/library"
+            app:layout_constraintStart_toStartOf="@+id/library"
+            app:layout_constraintTop_toBottomOf="@+id/library_text" />
+
+        <RadioGroup
+            android:id="@+id/study_radio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal"
+            android:padding="@dimen/radio_btn_padding_top_size"
+            app:layout_constraintEnd_toEndOf="@+id/study"
+            app:layout_constraintStart_toStartOf="@+id/study"
+            app:layout_constraintTop_toBottomOf="@+id/study">
+
+            <RadioButton
+                android:id="@+id/study_no"
+                android:layout_width="@dimen/radio_btn_size"
+                android:layout_height="@dimen/radio_btn_size"
+                android:layout_marginEnd="@dimen/radio_btn_margin_side_size"
+                android:background="@drawable/radio_no_selector"
+                android:button="@android:color/transparent" />
+
+            <RadioButton
+                android:id="@+id/study_maybe"
+                android:layout_width="@dimen/radio_btn_size"
+                android:layout_height="@dimen/radio_btn_size"
+                android:background="@drawable/radio_maybe_selector"
+                android:button="@android:color/transparent" />
+
+            <RadioButton
+                android:id="@+id/study_yes"
+                android:layout_width="@dimen/radio_btn_size"
+                android:layout_height="@dimen/radio_btn_size"
+                android:layout_marginStart="@dimen/radio_btn_margin_side_size"
+                android:background="@drawable/radio_yes_selector"
+                android:button="@android:color/transparent" />
+        </RadioGroup>
+
+        <EditText
+            android:id="@+id/study_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:gravity="start|top"
+            android:inputType="textMultiLine"
+            android:lines="2"
+            app:layout_constraintEnd_toEndOf="@+id/study_radio"
+            app:layout_constraintStart_toStartOf="@+id/study_radio"
+            app:layout_constraintTop_toBottomOf="@+id/study_radio" />
+
+        <View
+            android:id="@+id/bottom_spacer_room"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/bottom_space"
+            app:layout_constraintTop_toBottomOf="@id/study_border"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

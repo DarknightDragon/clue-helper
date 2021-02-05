@@ -5,4 +5,5 @@
     <dimen name="radio_btn_padding_top_size">5dp</dimen>
     <dimen name="name_size">24sp</dimen>
     <dimen name="border_margin_size">-10dp</dimen>
+    <dimen name="bottom_space">10dp</dimen>
 </resources>
