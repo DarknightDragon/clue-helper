@@ -8,7 +8,8 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.ClueHelper">
+        android:theme="@style/Theme.ClueHelper"
+        android:resizeableActivity="true" >
 
         <!-- Main Activity -->
         <activity android:name=".MainActivity"
@@ -23,7 +24,7 @@
         <!-- TabLayout Swipe Activity -->
         <activity android:name=".TabActivity"
             android:parentActivityName=".MainActivity"
-            android:launchMode="singleInstance">
+            android:launchMode="singleInstance" >
         </activity>
 
     </application>

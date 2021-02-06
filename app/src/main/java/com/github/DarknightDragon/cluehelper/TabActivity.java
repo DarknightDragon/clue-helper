@@ -73,10 +73,25 @@ public class TabActivity extends AppCompatActivity {
         ViewPager2 vp2 = findViewById( R.id.view_pager );
         if ( vp2.getAdapter() != null )
         {
-            int caller = getIntent().getExtras().getInt( "id" );
-            if ( vp2.getCurrentItem() != caller )
+            Intent intent = getIntent();
+            Bundle extras = intent.getExtras();
+            int caller = extras.getInt( "id" );
+
+            if ( extras.containsKey( "reset" ) )
             {
-                vp2.setCurrentItem( caller );
+                Intent newIntent = new Intent( this, TabActivity.class );
+                intent.setFlags( Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK );
+                newIntent.putExtra( "id", caller );
+                finish();
+                startActivity( newIntent );
+                //finish();
+            }
+            else
+            {
+                if ( vp2.getCurrentItem() != caller )
+                {
+                    vp2.setCurrentItem( caller );
+                }
             }
         }
 

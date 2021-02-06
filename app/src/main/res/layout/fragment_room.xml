@@ -647,7 +647,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
-            android:text="@string/room_kitchen"
+            android:text="@string/room_study"
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="@dimen/name_size"
