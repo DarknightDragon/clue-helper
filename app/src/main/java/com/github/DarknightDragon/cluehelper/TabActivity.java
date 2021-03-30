@@ -2,7 +2,6 @@ package com.github.DarknightDragon.cluehelper;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
@@ -13,10 +12,8 @@ import androidx.viewpager2.widget.ViewPager2;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 
-import java.util.Iterator;
-import java.util.Set;
-
 public class TabActivity extends AppCompatActivity {
+    static boolean isActive = false;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -56,6 +53,8 @@ public class TabActivity extends AppCompatActivity {
         {
             vp2.setCurrentItem( caller );
         }
+
+        isActive = true;
     }
 
     @Override

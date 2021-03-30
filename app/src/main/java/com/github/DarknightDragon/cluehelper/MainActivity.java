@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -25,8 +24,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btn_weapon.setOnClickListener( this );
         Button btn_room = findViewById( R.id.btn_rooms );
         btn_room.setOnClickListener( this );
-        Button btn_settings = findViewById( R.id.btn_reset);
-        btn_settings.setOnClickListener(new View.OnClickListener() {
+        Button btn_reset = findViewById( R.id.btn_reset);
+        btn_reset.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 AlertDialog.Builder builder = new AlertDialog.Builder( MainActivity.this );
@@ -62,7 +61,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         if ( reset )
         {
-            intent.putExtra( "reset", true );
+            intent.putExtra("reset", true);
             reset = false;
         }
 
@@ -81,5 +80,32 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
 
         startActivity(intent);
+    }
+
+    @Override
+    public void onBackPressed()
+    {
+        if ( !TabActivity.isActive ) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+            builder.setTitle("Exit?");
+            builder.setMessage("Are you sure you want to exit?");
+            builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    finishAffinity();
+                }
+            });
+            builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                }
+            });
+
+            AlertDialog alert = builder.create();
+            alert.show();
+        } else {
+            moveTaskToBack(false);
+        }
     }
 }
