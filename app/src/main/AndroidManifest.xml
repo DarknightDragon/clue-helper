@@ -12,9 +12,10 @@
         android:resizeableActivity="true" >
 
         <!-- Main Activity -->
-        <activity android:name=".MainActivity"
+        <activity android:name=".TabActivity"
             android:launchMode="singleInstance"
-            android:alwaysRetainTaskState="true">
+            android:alwaysRetainTaskState="true"
+            android:windowSoftInputMode="adjustPan">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -22,10 +23,10 @@
         </activity>
 
         <!-- TabLayout Swipe Activity -->
-        <activity android:name=".TabActivity"
+        <!--<activity android:name=".TabActivity"
             android:parentActivityName=".MainActivity"
             android:launchMode="singleInstance" >
-        </activity>
+        </activity>-->
 
     </application>
 

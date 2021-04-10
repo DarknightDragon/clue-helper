@@ -13,108 +13,47 @@ import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 
 public class TabActivity extends AppCompatActivity {
-    static boolean isActive = false;
+    static boolean isActive = true; // need to delete after deleting MainActivity
+    ViewPager2 vp2;
+    ViewsAdapter viewsAdapter;
+    TabLayout tabLayout;
+    TabLayoutMediator tabLayoutMediator;
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    protected void onCreate( @Nullable Bundle savedInstanceState ) {
+        super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_tablayout );
 
         // setup swipeable tab view
-        ViewPager2 vp2 = findViewById( R.id.view_pager );
-        vp2.setAdapter( new ViewsAdapter( this ) );
+        vp2 = findViewById( R.id.view_pager );
+        viewsAdapter = new ViewsAdapter( this );
+        vp2.setAdapter( viewsAdapter );
 
         // TabLayoutMediator
-        TabLayout tabLayout = findViewById( R.id.tab_layout );
-        TabLayoutMediator tabLayoutMediator = new TabLayoutMediator(tabLayout, vp2, new TabLayoutMediator.TabConfigurationStrategy() {
+        tabLayout = findViewById( R.id.tab_layout );
+        tabLayoutMediator = new TabLayoutMediator( tabLayout, vp2, new TabLayoutMediator.TabConfigurationStrategy() {
             @Override
-            public void onConfigureTab(@NonNull TabLayout.Tab tab, int position) {
+            public void onConfigureTab( @NonNull TabLayout.Tab tab, int position ) {
                 switch ( position ) {
                     case 0:
-                        tab.setText( "Characters" );
+                        tab.setText( "Home" );
                         break;
                     case 1:
-                        tab.setText( "Weapons" );
+                        tab.setText( "Characters" );
                         break;
                     case 2:
+                        tab.setText( "Weapons" );
+                        break;
+                    case 3:
                         tab.setText( "Rooms" );
                         break;
                 }
             }
-        });
+        } );
         tabLayoutMediator.attach();
 
-        // add back button
-        getSupportActionBar().setDisplayHomeAsUpEnabled( true );
-
-        // get caller and open corresponding fragment
-        int caller = getIntent().getExtras().getInt("id" );
-        if ( caller == 0 || caller == 1 || caller == 2 )
-        {
-            vp2.setCurrentItem( caller );
-        }
-
-        isActive = true;
+        // unsure if below is needed
+        // get caller and open corresponding fragment; open home
+        //vp2.setCurrentItem( 0 );
     }
-
-    @Override
-    protected void onNewIntent( Intent intent )
-    {
-        super.onNewIntent( intent );
-        setIntent( intent );
-    }
-
-    @Override
-    protected void onResume()
-    {
-        super.onResume();
-
-        ViewPager2 vp2 = findViewById( R.id.view_pager );
-        if ( vp2.getAdapter() != null )
-        {
-            Intent intent = getIntent();
-            Bundle extras = intent.getExtras();
-            int caller = extras.getInt( "id" );
-
-            if ( extras.containsKey( "reset" ) )
-            {
-                Intent newIntent = new Intent( this, TabActivity.class );
-                intent.setFlags( Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK );
-                newIntent.putExtra( "id", caller );
-                finish();
-                startActivity( newIntent );
-                //finish();
-            }
-            else
-            {
-                if ( vp2.getCurrentItem() != caller )
-                {
-                    vp2.setCurrentItem( caller );
-                }
-            }
-        }
-
-    }
-
-    @Override
-    public boolean onOptionsItemSelected( MenuItem item )
-    {
-        switch ( item.getItemId() )
-        {
-            case android.R.id.home:
-                onBackPressed();
-                return true;
-            default:
-                return super.onOptionsItemSelected( item );
-        }
-    }
-
-    @Override
-    public void onBackPressed()
-    {
-        Intent i = new Intent( this, MainActivity.class );
-        i.addFlags( Intent.FLAG_ACTIVITY_REORDER_TO_FRONT );
-        startActivity( i );
-    }
-
 }
