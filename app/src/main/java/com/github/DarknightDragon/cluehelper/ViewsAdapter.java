@@ -7,11 +7,10 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
-import java.nio.file.Watchable;
 import java.util.ArrayList;
 
 public class ViewsAdapter extends FragmentStateAdapter {
-    static ArrayList<Fragment> fragList = new ArrayList<>();
+    volatile static ArrayList<Fragment> fragList = new ArrayList<>();
 
     public ViewsAdapter( @NonNull FragmentActivity fragmentActivity ) {
         super( fragmentActivity );
@@ -53,4 +52,5 @@ public class ViewsAdapter extends FragmentStateAdapter {
     public int getItemCount() {
         return 4;
     }
+
 }

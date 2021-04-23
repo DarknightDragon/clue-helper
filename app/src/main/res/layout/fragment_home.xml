@@ -11,29 +11,41 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <!-- google switch preference for interaction with sharedpreferences -->
+        <!--<View
+            android:id="@+id/switch_border"
+            app:layout_constraintHeight="match_constraint"
+            app:layout_constraintWidth="match_constraint"
+            android:layout_marginStart="@dimen/border_margin_size"
+            android:layout_marginTop="@dimen/border_margin_size"
+            android:layout_marginEnd="@dimen/border_margin_size"
+            android:layout_marginBottom="@dimen/border_margin_size"
+            android:background="@drawable/border"
+            app:layout_constraintBottom_toBottomOf="@+id/force_checkmarks"
+            app:layout_constraintEnd_toEndOf="@+id/force_checkmarks"
+            app:layout_constraintStart_toStartOf="@+id/force_checkmarks"
+            app:layout_constraintTop_toTopOf="@+id/force_checkmarks" />-->
+
         <com.google.android.material.switchmaterial.SwitchMaterial
             android:id="@+id/force_checkmarks"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="64dp"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="32dp"
             android:layout_marginEnd="64dp"
             android:text="@string/force_checkmarks"
-            app:useMaterialThemeColors="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:useMaterialThemeColors="true" />
 
         <Button
             android:id="@+id/btn_reset"
-            android:backgroundTint="@color/dark_red"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="32dp"
+            android:backgroundTint="@color/dark_red"
             android:text="@string/reset"
-            app:layout_constraintBottom_toTopOf="@+id/notes"
             app:layout_constraintEnd_toEndOf="@+id/force_checkmarks"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="@+id/force_checkmarks"
@@ -42,6 +54,7 @@
         <View
             android:id="@+id/text_border"
             app:layout_constraintHeight="match_constraint"
+            app:layout_constraintWidth="match_constraint"
             android:layout_marginStart="@dimen/border_margin_size"
             android:layout_marginTop="@dimen/border_margin_size"
             android:layout_marginEnd="@dimen/border_margin_size"
@@ -50,31 +63,32 @@
             app:layout_constraintBottom_toBottomOf="@+id/notes"
             app:layout_constraintEnd_toEndOf="@+id/notes"
             app:layout_constraintStart_toStartOf="@+id/notes"
-            app:layout_constraintTop_toTopOf="@+id/notes"
-            app:layout_constraintWidth="match_constraint" />
+            app:layout_constraintTop_toTopOf="@+id/notes" />
 
         <EditText
             android:id="@+id/notes"
             android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
+            android:minHeight="100dp"
             android:layout_marginStart="40dp"
             android:layout_marginTop="50dp"
             android:layout_marginEnd="40dp"
             android:autofillHints="@string/notes_placeholder"
-            android:minLines="10"
             android:ems="10"
             android:gravity="start|top"
             android:inputType="textCapSentences|textMultiLine"
-            app:layout_constraintBottom_toTopOf="@id/bottom_spacer_main"
+            android:overScrollMode="always"
+            android:scrollbarStyle="insideInset"
+            android:scrollbars="vertical"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/btn_reset"
-            app:layout_constraintVertical_bias="1.0"
+            app:layout_constraintVertical_bias="0"
             tools:ignore="LabelFor" />
 
         <View
-            android:id="@+id/bottom_spacer_main"
+            android:id="@+id/bottom_spacer_home"
             android:layout_width="0dp"
             android:layout_height="@dimen/bottom_space"
             android:layout_marginTop="0dp"

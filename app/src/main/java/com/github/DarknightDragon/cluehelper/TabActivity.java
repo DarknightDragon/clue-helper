@@ -1,8 +1,6 @@
 package com.github.DarknightDragon.cluehelper;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -13,7 +11,6 @@ import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 
 public class TabActivity extends AppCompatActivity {
-    static boolean isActive = true; // need to delete after deleting MainActivity
     ViewPager2 vp2;
     ViewsAdapter viewsAdapter;
     TabLayout tabLayout;
@@ -51,9 +48,5 @@ public class TabActivity extends AppCompatActivity {
             }
         } );
         tabLayoutMediator.attach();
-
-        // unsure if below is needed
-        // get caller and open corresponding fragment; open home
-        //vp2.setCurrentItem( 0 );
     }
 }

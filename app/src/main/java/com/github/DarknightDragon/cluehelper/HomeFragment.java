@@ -1,24 +1,23 @@
 package com.github.DarknightDragon.cluehelper;
 
+import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.widget.AppCompatEditText;
 import androidx.fragment.app.Fragment;
 
-import android.util.Log;
+import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewParent;
+import android.view.ViewTreeObserver;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.RadioGroup;
 import android.widget.ScrollView;
-
-import java.util.ArrayList;
-import java.util.Objects;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -35,6 +34,8 @@ public class HomeFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    private int notesHeight = -1;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -68,8 +69,7 @@ public class HomeFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView( LayoutInflater inflater, ViewGroup container,
-                              Bundle savedInstanceState ) {
+    public View onCreateView( LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState ) {
         // Inflate the layout for this fragment
         return inflater.inflate( R.layout.fragment_home, container, false );
     }
@@ -80,13 +80,29 @@ public class HomeFragment extends Fragment {
         btn_reset.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick( View v ) {
-                AlertDialog.Builder builder = new AlertDialog.Builder( Objects.requireNonNull( getActivity() ) );
+                AlertDialog.Builder builder = new AlertDialog.Builder( requireActivity() );
                 builder.setTitle( "Confirm?" );
                 builder.setMessage( "Are you sure you want to reset everything?" );
                 builder.setPositiveButton( "YES", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick( DialogInterface dialog, int which ) {
-                        reset( view );
+                        // reset notes
+                        ( (EditText) view.findViewById( R.id.notes ) ).setText( "" );
+
+                        // reset Characters
+                        Bundle resetChar = new Bundle();
+                        resetChar.putBoolean( "resetChar", true );
+                        getParentFragmentManager().setFragmentResult( "Character", resetChar );
+
+                        // reset Weapons
+                        Bundle resetWeap = new Bundle();
+                        resetWeap.putBoolean( "resetWeap", true );
+                        getParentFragmentManager().setFragmentResult( "Weapon", resetWeap );
+
+                        // reset Rooms
+                        Bundle resetRoom = new Bundle();
+                        resetRoom.putBoolean( "resetRoom", true );
+                        getParentFragmentManager().setFragmentResult( "Room", resetRoom );
                     }
                 } );
                 builder.setNegativeButton( "NO", new DialogInterface.OnClickListener() {
@@ -100,42 +116,69 @@ public class HomeFragment extends Fragment {
                 alert.show();
             }
         } );
+
+        // allow edittext to scroll inside scrollview
+        handleEditTextScrollable( view );
+
+        // grow EditText to the full screen or default size
+        view.getViewTreeObserver().addOnGlobalLayoutListener( new ViewTreeObserver.OnGlobalLayoutListener() {
+            @Override
+            public void onGlobalLayout() {
+                EditText notes = view.findViewById( R.id.notes );
+                View spacer = view.findViewById( R.id.bottom_spacer_home );
+
+                // from https://stackoverflow.com/a/31852757
+                // instantiate DisplayMetrics
+                DisplayMetrics dm = new DisplayMetrics();
+                // fill dm with data from current display
+                requireActivity().getWindowManager().getDefaultDisplay().getMetrics(dm);
+                // notesLoc will hold the coordinates of notes
+                int[] notesLoc = new int[2];
+                // fill notesLoc with the coordinates of notes (notesLoc[0] = x, notesLoc[1] = y)
+                notes.getLocationOnScreen( notesLoc );
+
+                // set the notes height once
+                if ( notesHeight == -1 ) {
+                    notesHeight = notesLoc[1] + spacer.getMeasuredHeight() + 1;
+                }
+
+                // calculate the distance from the TOP(its y-coordinate) of your view to the bottom of the screen
+                int distance = dm.heightPixels - notesHeight;
+
+                if ( distance > 50 ) {
+                    notes.setMaxHeight( distance );
+                } else {
+                    notes.setMaxHeight( notes.getMaxHeight() );
+                }
+
+                // from https://stackoverflow.com/a/26193736
+                view.getViewTreeObserver().removeOnGlobalLayoutListener( this );
+            }
+        } );
     }
 
-    private void reset( View view ) {
-        ArrayList<Fragment> fragList = ViewsAdapter.fragList;
-        int fragSize = fragList.size();
-        if ( fragSize > 4 ) {
-            for ( int i = 0; i < fragSize; ++i ) {
-                Log.e( "FragList", "Frag #" + ( i + 1 ) + ": " + fragList.get( i ).getClass().toString() );
-            }
-            throw new IllegalStateException( "ERROR: Adapter created twice! There are " + fragSize + " fragments!" );
-        }
-        // check all fragment layouts
-        for ( int i = 0; i < fragSize; ++i ) {
-            ViewGroup vg = ( ViewGroup ) fragList.get( i ).getView();
+    // from https://stackoverflow.com/a/50345118
+    // suppress lint to get rid of error on setontouchlistener not also overriding performclick
+    @SuppressLint("ClickableViewAccessibility")
+    // from https://stackoverflow.com/a/27520614
+    private void handleEditTextScrollable( final View view ) {
+        EditText notes = (EditText) view.findViewById( R.id.notes );
 
-            if ( vg.getClass() == ScrollView.class ) {
-                vg = ( ViewGroup ) vg.getChildAt( 0 ); // this is a constraint layout
-            }
-
-            if ( vg != null && vg.getChildAt( i ) != null ) {
-                for ( int j = 0; j < vg.getChildCount(); ++j ) {
-                    if ( vg.getChildAt( j ).getClass() == AppCompatEditText.class || vg.getChildAt( j ).getClass() == EditText.class ) {
-                        ( ( EditText ) vg.getChildAt( j ) ).setText( "" );
-                    } else if ( vg.getChildAt( j ).getClass() == RadioGroup.class && ( ( RadioGroup ) vg.getChildAt( j ) ).getCheckedRadioButtonId() != -1 ) {
-                        ( ( RadioGroup ) vg.getChildAt( j ) ).clearCheck();
+        notes.setOnTouchListener( new View.OnTouchListener() {
+            @Override
+            public boolean onTouch( View v, MotionEvent event ) {
+                if ( v.getId() == R.id.notes ) {
+                    ViewParent vp = v.getParent();
+                    while ( !( vp instanceof ScrollView ) ) {
+                        vp = vp.getParent();
+                    }
+                    vp.requestDisallowInterceptTouchEvent( true );
+                    if ( ( event.getAction() & MotionEvent.ACTION_MASK ) == MotionEvent.ACTION_UP ) {
+                        vp.requestDisallowInterceptTouchEvent( false );
                     }
                 }
-            } else {
-                if ( vg == null ) {
-                    Log.e( "ViewGroup", "VG is null!" );
-                    throw new IllegalStateException( "ERROR: VG is null at position " + i + "!" );
-                } else {
-                    Log.e( "ViewGroup", "VG Child is null!" );
-                    throw new IllegalStateException( "ERROR: VG child is null at position " + i + "!" );
-                }
+                return false;
             }
-        }
+        } );
     }
 }

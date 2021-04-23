@@ -2,11 +2,16 @@ package com.github.DarknightDragon.cluehelper;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentResultListener;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.RadioGroup;
+import android.widget.ScrollView;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -14,6 +19,8 @@ import android.view.ViewGroup;
  * create an instance of this fragment.
  */
 public class CharacterFragment extends Fragment {
+    // flag for reset button pressed
+    private volatile boolean reset = false;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -53,6 +60,16 @@ public class CharacterFragment extends Fragment {
             mParam1 = getArguments().getString( ARG_PARAM1 );
             mParam2 = getArguments().getString( ARG_PARAM2 );
         }
+
+        // set listener for reset button
+        getParentFragmentManager().setFragmentResultListener( "Character", this, new FragmentResultListener() {
+            @Override
+            public void onFragmentResult( @NonNull String requestKey, @NonNull Bundle result ) {
+                if ( !reset ) {
+                    reset = result.getBoolean( "resetChar" );
+                }
+            }
+        } );
     }
 
     @Override
@@ -60,5 +77,29 @@ public class CharacterFragment extends Fragment {
                               Bundle savedInstanceState ) {
         // Inflate the layout for this fragment
         return inflater.inflate( R.layout.fragment_character, container, false );
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        if ( reset ) {
+            reset = false;
+            ViewGroup vg = ( ViewGroup ) requireView();
+            if ( vg instanceof ScrollView ) {
+                vg = ( ViewGroup ) vg.getChildAt( 0 );
+            }
+
+            if ( vg.getChildAt( 0 ) != null ) {
+                for ( int i = 0; i < vg.getChildCount(); ++i ) {
+                    View v = vg.getChildAt( i );
+                    if ( v instanceof EditText ) {
+                        ( ( EditText ) v ).setText( "" );
+                    } else if ( v instanceof RadioGroup ) {
+                        ( ( RadioGroup ) v ).clearCheck();
+                    }
+                }
+            }
+        }
     }
 }
