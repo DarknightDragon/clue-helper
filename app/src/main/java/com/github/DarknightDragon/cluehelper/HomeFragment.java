@@ -23,7 +23,8 @@ import android.widget.ScrollView;
 
 import com.google.android.material.switchmaterial.SwitchMaterial;
 
-public class HomeFragment extends Fragment implements SharedPreferences.OnSharedPreferenceChangeListener {
+// from https://stackoverflow.com/questions/33508841/onsharedpreferencechange-listener-in-fragment
+public class HomeFragment extends Fragment {
     private int notesHeight = -1;
 
     public HomeFragment() {
@@ -38,10 +39,20 @@ public class HomeFragment extends Fragment implements SharedPreferences.OnShared
 
     @Override
     public void onViewCreated( View view, @Nullable Bundle savedInstanceState ) {
-        // set switch to default shared preferences file
         SwitchMaterial forceCheck = view.findViewById( R.id.force_checkmarks );
+
+        // set onclick listener to save shared preference
+        forceCheck.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick( View v ) {
+                SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences( requireContext() );
+                pref.edit().putBoolean( "forceCheckOn", ( (SwitchMaterial) v).isChecked() ).apply();
+            }
+        } );
+
+        // set switch to default shared preferences file
         SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences( requireContext() );
-        if ( pref.getBoolean( "forceCheck", false ) ) {
+        if ( pref.getBoolean( "forceCheckOn", false ) ) {
             if ( !forceCheck.isChecked() ) {
                 forceCheck.setChecked( true );
             }
@@ -155,10 +166,5 @@ public class HomeFragment extends Fragment implements SharedPreferences.OnShared
                 return false;
             }
         } );
-    }
-
-    @Override
-    public void onSharedPreferenceChanged( SharedPreferences sharedPreferences, String key ) {
-
     }
 }

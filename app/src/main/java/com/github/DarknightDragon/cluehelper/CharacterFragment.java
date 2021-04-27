@@ -2,6 +2,7 @@ package com.github.DarknightDragon.cluehelper;
 
 import android.annotation.SuppressLint;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -10,6 +11,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentResultListener;
 
+import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -22,6 +24,8 @@ import android.widget.ScrollView;
 public class CharacterFragment extends Fragment {
     // flag for reset button pressed
     private volatile boolean reset = false;
+    // flag for reference to forceCheck status
+    private boolean forceCheckOn = false;
 
     public CharacterFragment() {
         // Required empty public constructor
@@ -57,12 +61,11 @@ public class CharacterFragment extends Fragment {
 
         for ( int i = 0; i < radGroups.getChildCount(); ++i ) {
             if ( radGroups.getChildAt( i ) instanceof RadioGroup ) {
-                RadioButton radBtn = ( RadioButton ) ( (RadioGroup) radGroups.getChildAt( i ) ).getChildAt( 2 );
+                RadioButton radBtn = (RadioButton) ( (RadioGroup) radGroups.getChildAt( i ) ).getChildAt( 2 );
                 radBtn.setOnTouchListener( new View.OnTouchListener() {
                     @Override
                     public boolean onTouch( View v, MotionEvent event ) {
-                        // TODO: Add if statement to see if sharedPreferences forceCheckmark toggle is on
-                        if ( event.getActionMasked() == MotionEvent.ACTION_UP && true ) {
+                        if ( event.getActionMasked() == MotionEvent.ACTION_UP && forceCheckOn ) {
                             AlertDialog.Builder builder = new AlertDialog.Builder( requireActivity() );
                             builder.setTitle( "Confirm?" );
                             builder.setMessage( "Are you sure you want to continue? All other options on this page will be set to X" );
@@ -93,6 +96,8 @@ public class CharacterFragment extends Fragment {
 
                             AlertDialog alert = builder.create();
                             alert.show();
+                        } else if ( event.getActionMasked() == MotionEvent.ACTION_UP ) {
+                            ( (RadioButton) v).toggle();
                         }
 
                         // needed to say that the event was handled in this override and not passed through the hierarchy
@@ -107,6 +112,11 @@ public class CharacterFragment extends Fragment {
     public void onResume() {
         super.onResume();
 
+        // load switch status into memory to avoid many repeating calls to file
+        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences( requireContext() );
+        forceCheckOn = pref.getBoolean( "forceCheckOn", false );
+
+        // if reset button pressed, reset this view
         if ( reset ) {
             reset = false;
             ViewGroup vg = ( ViewGroup ) requireView();
@@ -125,5 +135,12 @@ public class CharacterFragment extends Fragment {
                 }
             }
         }
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+
+        forceCheckOn = false;
     }
 }
